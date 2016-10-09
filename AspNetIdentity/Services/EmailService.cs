@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
-//cOMENT//Ario nuevo
 namespace AspNetIdentity.Services
 {
     public class EmailService : IIdentityMessageService
