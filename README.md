@@ -4,7 +4,7 @@ configurar en el Services/EmailServices el correo y la contraseña del correo
 
 http://localhost:1876/api/accounts/create
 {
-  "Email": "anibal-papo@hotmail.com",
+  "Email": "anibaljoseguerraz@gmail.com",
 "UserName":"anibal1",
 "Password": "Anibal11*",
 "ConfirmPassword": "Anibal11*",
