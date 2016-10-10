@@ -41,7 +41,7 @@ namespace AspNetIdentity
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             // Plugin the OAuth bearer JSON Web Token tokens generation and Consumption will be here
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
@@ -56,6 +56,8 @@ namespace AspNetIdentity
 
             // OAuth 2.0 Bearer Access Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
+
+
         }
 
         private void ConfigureOAuthTokenConsumption(IAppBuilder app)
