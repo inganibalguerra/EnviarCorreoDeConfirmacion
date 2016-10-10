@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
+//este es un nuevo comentario
 namespace AspNetIdentity.Services
 {
     public class EmailService : IIdentityMessageService
@@ -19,7 +20,7 @@ namespace AspNetIdentity.Services
         {
             using (System.Net.Mail.MailMessage MailSetup = new System.Net.Mail.MailMessage())
             {
-                NetworkCredential loginInfo = new NetworkCredential("aqui tu correo", "aqui tu contraseña");
+                NetworkCredential loginInfo = new NetworkCredential("anibal-papo@hotmail.com", "taravicuadriculi");
                 MailSetup.Subject = message.Subject;
                 MailSetup.To.Add(message.Destination);
                 MailSetup.From = new System.Net.Mail.MailAddress("tramites@valledupar.gov.co", "Avanzar es Posible!!!");

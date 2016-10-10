@@ -17,13 +17,15 @@ namespace AspNetIdentity.Controllers
     [RoutePrefix("api/accounts")]
     public class AccountsController : BaseApiController
     {
-
+        //EL AUTORIZE protege las rutas lo solo un usuario autenticado con el token de acceso JWT válida puede acceder a ella (ruta)
+        //[Authorize]
         [Route("users")]
         public IHttpActionResult GetUsers()
         {
             return Ok(this.AppUserManager.Users.ToList().Select(u => this.TheModelFactory.Create(u)));
         }
 
+        [Authorize]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string Id)
         {
@@ -38,6 +40,7 @@ namespace AspNetIdentity.Controllers
 
         }
 
+        [Authorize]
         [Route("user/{username}")]
         public async Task<IHttpActionResult> GetUserByName(string username)
         {
@@ -51,6 +54,53 @@ namespace AspNetIdentity.Controllers
             return NotFound();
 
         }
+
+        [Authorize]
+        [Route("ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await this.AppUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+        [Authorize]
+        [Route("user/{id:guid}")]
+        public async Task<IHttpActionResult> DeleteUser(string id)
+        {
+
+            //Only SuperAdmin or Admin can delete users (Later when implement roles)
+
+            var appUser = await this.AppUserManager.FindByIdAsync(id);
+
+            if (appUser != null)
+            {
+                IdentityResult result = await this.AppUserManager.DeleteAsync(appUser);
+
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                return Ok();
+
+            }
+
+            return NotFound();
+
+        }
+
+        [AllowAnonymous]
         [Route("create")]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
@@ -87,6 +137,8 @@ namespace AspNetIdentity.Controllers
 
             return Created(locationHeader, TheModelFactory.Create(user));
         }
+
+        [AllowAnonymous]
         [HttpGet]
         [Route("ConfirmEmail", Name = "ConfirmEmailRoute")]
         public async Task<IHttpActionResult> ConfirmEmail(string userId = "", string code = "")
@@ -107,47 +159,6 @@ namespace AspNetIdentity.Controllers
             {
                 return GetErrorResult(result);
             }
-        }
-        [Route("ChangePassword")]
-        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            IdentityResult result = await this.AppUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
-
-            return Ok();
-        }
-        [Route("user/{id:guid}")]
-        public async Task<IHttpActionResult> DeleteUser(string id)
-        {
-
-            //Only SuperAdmin or Admin can delete users (Later when implement roles)
-
-            var appUser = await this.AppUserManager.FindByIdAsync(id);
-
-            if (appUser != null)
-            {
-                IdentityResult result = await this.AppUserManager.DeleteAsync(appUser);
-
-                if (!result.Succeeded)
-                {
-                    return GetErrorResult(result);
-                }
-
-                return Ok();
-
-            }
-
-            return NotFound();
-
         }
     }
 }
