@@ -1,3 +1,43 @@
 # EnviarCorreoDeConfirmacion
 
 configurar en el Services/EmailServices el correo y la contraseña del correo
+
+http://localhost:1876/api/accounts/create
+{
+  "Email": "anibal-papo@hotmail.com",
+"UserName":"anibal1",
+"Password": "Anibal11*",
+"ConfirmPassword": "Anibal11*",
+"FirstName": "anibal1",
+"LastName": "anibal1"
+
+}
+
+http://localhost:1876/oauth/token
+username=SuperPowerUser&password=MySuperP@ssword!&grant_type=password
+
+http://localhost:1876/api/accounts/changepassword
+Content-Type: application/x-www-form-urlencoded
+authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1laWQiOiI1NzRmODNmMy02MzA2LTRkMmEtODRiNi1iZTY3NjZjMTExMmYiLCJ1bmlxdWVfbmFtZSI6ImFuaWJhbCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYWNjZXNzY29udHJvbHNlcnZpY2UvMjAxMC8wNy9jbGFpbXMvaWRlbnRpdHlwcm92aWRlciI6IkFTUC5ORVQgSWRlbnRpdHkiLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6ImQ1NzA3OWQ3LTg3MDYtNDhjMy1iYjhmLWJlYTFiYjI0ZGVkMSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTg3NiIsImF1ZCI6IjQxNGUxOTI3YTM4ODRmNjhhYmM3OWY3MjgzODM3ZmQxIiwiZXhwIjoxNDc2MTU1Mjg0LCJuYmYiOjE0NzYwNjg4ODR9.uN6Y600DL-RDOXmIQoDMZZ3JIy5KMmgRe8FmLias_Lo
+accept: application/json
+
+OldPassword=Anibal2*&NewPassword=Anibal2*&ConfirmPassword=Anibal2*
+
+http://localhost:1876/api/accounts/user/7eeb7b48-b757-4da8-9198-b4e30e5ed5ee/assignclaims
+Content-Type: application/json
+authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1laWQiOiI4M2IxODBjNS02NTkxLTQ0MDEtOTcwYi03ZDdmZDY0NDEyMzciLCJ1bmlxdWVfbmFtZSI6IlN1cGVyUG93ZXJVc2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9hY2Nlc3Njb250cm9sc2VydmljZS8yMDEwLzA3L2NsYWltcy9pZGVudGl0eXByb3ZpZGVyIjoiQVNQLk5FVCBJZGVudGl0eSIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiOGI5NDZjZmItMTQ0ZC00NzBkLWI5ODMtOGE1YjEyNjBkNWZjIiwicm9sZSI6WyJBZG1pbiIsIlN1cGVyQWRtaW4iXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxODc2IiwiYXVkIjoiNDE0ZTE5MjdhMzg4NGY2OGFiYzc5ZjcyODM4MzdmZDEiLCJleHAiOjE0NzYxNTU4NjQsIm5iZiI6MTQ3NjA2OTQ2NH0.utWQSaed2y7AU9QRSxpGO1Zifou_q9fEhximjQaJHLw
+accept: application/json
+
+[
+  {"Type":"Phone","Value":"962795355581"},
+  {"Type":"Gender","Value":"Male"}
+]
+
+http://localhost:1876/api/accounts/user/7eeb7b48-b757-4da8-9198-b4e30e5ed5ee/removeclaims
+Content-Type: application/json
+authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1laWQiOiI4M2IxODBjNS02NTkxLTQ0MDEtOTcwYi03ZDdmZDY0NDEyMzciLCJ1bmlxdWVfbmFtZSI6IlN1cGVyUG93ZXJVc2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9hY2Nlc3Njb250cm9sc2VydmljZS8yMDEwLzA3L2NsYWltcy9pZGVudGl0eXByb3ZpZGVyIjoiQVNQLk5FVCBJZGVudGl0eSIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiOGI5NDZjZmItMTQ0ZC00NzBkLWI5ODMtOGE1YjEyNjBkNWZjIiwicm9sZSI6WyJBZG1pbiIsIlN1cGVyQWRtaW4iXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxODc2IiwiYXVkIjoiNDE0ZTE5MjdhMzg4NGY2OGFiYzc5ZjcyODM4MzdmZDEiLCJleHAiOjE0NzYxNTU4NjQsIm5iZiI6MTQ3NjA2OTQ2NH0.utWQSaed2y7AU9QRSxpGO1Zifou_q9fEhximjQaJHLw
+accept: application/json
+
+[
+  {"Type":"Gender","Value":"Male"}
+]
