@@ -20,7 +20,7 @@ namespace AspNetIdentity.Services
         {
             using (System.Net.Mail.MailMessage MailSetup = new System.Net.Mail.MailMessage())
             {
-                NetworkCredential loginInfo = new NetworkCredential("anibal-papo@hotmail.com", "taravicuadriculi");
+                NetworkCredential loginInfo = new NetworkCredential("micuenta@hotmail.com", "micontraseña");
                 MailSetup.Subject = message.Subject;
                 MailSetup.To.Add(message.Destination);
                 MailSetup.From = new System.Net.Mail.MailAddress("tramites@valledupar.gov.co", "Avanzar es Posible!!!");
